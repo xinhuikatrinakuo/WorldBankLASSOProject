@@ -33,6 +33,26 @@ test_data.info()
 # RangeIndex: 1625 entries, 346 columns
 # dtypes: bool(1), int64(5), object(340)
 ```
+<h3>Data Preprocessing</h3>
+
+1. Encode categorical variables
+```python
+from sklearn.preprocessing import LabelEncoder
+
+# Identify categorical columns (object type)
+categorical_features = train_data.select_dtypes(include=['object']).columns.tolist()
+
+# Apply label encoding to categorical columns in both train and test datasets
+label_encoders = {}
+for col in categorical_features:
+    le = LabelEncoder()
+    train_data[col] = le.fit_transform(train_data[col])
+    test_data[col] = test_data[col].map(lambda s: le.transform([s])[0] if s in le.classes_ else -1)
+
+# Confirm encoding success by displaying first few rows
+train_data.head()
+```
+
 
 <h2>Methodology</h2>
 
