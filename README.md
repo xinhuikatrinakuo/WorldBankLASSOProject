@@ -52,11 +52,60 @@ for col in categorical_features:
 # Confirm encoding success by displaying first few rows
 train_data.head()
 ```
+This ensures all categorical variables are numeric for modeling.
 
+2. Align features between train and test sets:
+```python
+# Ensure train and test datasets have the same features
 
-<h2>Methodology</h2>
+# Find common columns in both datasets
+common_features = list(set(train_data.columns) & set(test_data.columns))
 
-Project applies machine learning classification techniques to predict household poverty status, with performance evaluated using the logloss error metric. Logloss rewards confident, correct predictions and penalizes overconfident misclassifications, providing a nuanced measure of probabilistic model performance. Models are selected, tuned, and evaluated to identify key variables and achieve optimal predictive accuracy.
+# Keep only the common features in both datasets
+train_data = train_data[common_features]
+test_data = test_data[common_features]
+
+# Confirm feature alignment
+train_data.shape, test_data.shape
+```
+3. Standardize features:
+```python
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+
+# Define features (X) and target variable (y)
+X_train = train_data.drop(columns=['id', 'poor'], errors='ignore')
+y_train = train_data['poor']
+
+# Standardize features for Lasso
+scaler = StandardScaler()
+X_scaled_train = scaler.fit_transform(X_train)
+```
+
+<h2>Model: LASSO Logistic Regression</h2>
+
+LASSO was selected because it:
+- Selects the most relevant features by shrinking weaker predictors to zero.
+- Prevents overfitting via the L1 penalty.
+- Simplifies interpretation by focusing on strong predictors.
+
+**Training and feature selection:**
+```python
+# Apply Lasso (L1 Regularization) Logistic Regression
+lasso = LogisticRegression(penalty='l1', solver='liblinear', random_state=42, max_iter=1000)
+lasso.fit(X_scaled_train, y_train)
+
+# Get the selected features (non-zero coefficients)
+selected_features = X_train.columns[np.abs(lasso.coef_)[0] > 0]
+
+# Display the top selected features
+dataframe=pd.DataFrame(selected_features, columns=["Feature"])
+print(dataframe)
+
+# Prepare the test dataset using selected features
+X_test = test_data[selected_features]
+```
 
 
 <h2>Program walk-through:</h2>
