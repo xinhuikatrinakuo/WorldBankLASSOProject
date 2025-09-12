@@ -1,7 +1,7 @@
 <h1>Research on Finland Income Inequaltiy</h1>
 
 <h2>Description</h2>
-Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+Identifying households in poverty is essential for providing effective assistance, but traditional surveys are expensive and time-consuming. This project uses World Bank survey data to build machine learning models that predict poverty using a small set of encoded variables. The aim is to find the most important predictors to make poverty identification faster and more cost-effective. In order to evaluate performance, the models are assessed using the logloss metric, which rewards confident correct predictions while penalizing overconfident mistakes. Overall, the project includes data analysis, careful model selection and tuning, identification of key features, and well-documented code to support reproducibility.
 <br />
 
 
