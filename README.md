@@ -1,18 +1,38 @@
 <h1>Predicting Household Poverty Status Using Rapid Survey Data</h1>
 
 <h2>Description</h2>
-Identifying households in poverty is essential for providing effective assistance, but traditional surveys are expensive and time-consuming. This project uses World Bank survey data to build machine learning models that predict poverty using a small set of encoded variables. The aim is to find the most important predictors to make poverty identification faster and more cost-effective. In order to evaluate performance, the models are assessed using the logloss metric, which rewards confident correct predictions while penalizing overconfident mistakes. Overall, the project includes data analysis, careful model selection and tuning, identification of key features, and well-documented code to support reproducibility.
+
+Identifying households in poverty is essential for providing effective assistance, but traditional surveys are expensive and time-consuming. The World Bank aims to identify key factors influencing household poverty to improve data collection efficiency. The goal is this project is to predict household poverty status (`poor`: True/False) using machine learning and to select the most relevant features with **LASSO (L1-regularized) Logistic Regression**. LASSO shrinks weak predictors to zero, highlights the most important features, prevents overfitting, and allows the World Bank to reduce the number of survey questions while maintaining accuracy.
 <br />
 
 
 <h2>Data</h2>
 
-Analysis leverages two datasets: a training set and a test set, each consisting of household survey responses. Each observation corresponds to a unique household and is labeled with a binary poverty indicator (`Poor`). 
+Analysis uses two datasets: a **training set (6,578 households)** and a **test set (1,625 households)**, each containing 346 features. Each observation corresponds to a unique household and is labeled with a binary poverty indicator (`Poor`). 
+
+**Features include:**
+- Categorical indicators (e.g., ownership of items such as bar soap, cooking oil, matches, salt)
+- Numeric measures (e.g., number of working cell phones, number of rooms in the household)
+
 <p align="center">
 <img width="457" height="258" alt="Screenshot 2025-09-12 at 3 46 39 PM" src="https://github.com/user-attachments/assets/1817f46f-9414-45bb-b26e-f1ba15e5a2f4" />
 <br>
 <p align="left">
-Survey variables include both categorical indicators and numeric measures, but all are encoded as random character strings. For example, categorical variables may reflect household ownership of items, while numeric variables could represent quantities like the number of working cell phones or the number of rooms in the household. Because the variables are encoded, the focus of this project is on selecting the most predictive features rather than interpreting their real-world meaning.
+All variables are encoded as random character strings, so our focus is on predictive power rather than interpretability. The target distribution is balanced: 
+
+- Non-poor: 54.6%
+- Poor: 45.4%
+
+This balance means no special class weighting is required.
+```python
+train_data.info()
+# RangeIndex: 6578 entries, 346 columns
+# dtypes: bool(1), int64(5), object(340)
+
+test_data.info()
+# RangeIndex: 1625 entries, 346 columns
+# dtypes: bool(1), int64(5), object(340)
+```
 
 <h2>Methodology</h2>
 
