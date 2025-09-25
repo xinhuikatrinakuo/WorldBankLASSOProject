@@ -52,6 +52,8 @@ for col in categorical_features:
 # Confirm encoding success by displaying first few rows
 train_data.head()
 ```
+<img width="545" height="162" alt="Screenshot 2025-09-24 at 5 09 32 PM" src="https://github.com/user-attachments/assets/4b57850e-2146-4bd5-b25a-791f9aab20f8" />
+
 This ensures all categorical variables are numeric for modeling.
 
 2. Align features between train and test sets:
@@ -98,7 +100,9 @@ lasso.fit(X_scaled_train, y_train)
 
 # Get the selected features (non-zero coefficients)
 selected_features = X_train.columns[np.abs(lasso.coef_)[0] > 0]
-
+```
+**Fixing test set mismatches and standardizing:**
+```python
 # Display the top selected features
 dataframe=pd.DataFrame(selected_features, columns=["Feature"])
 print(dataframe)
@@ -106,8 +110,15 @@ print(dataframe)
 # Prepare the test dataset using selected features
 X_test = test_data[selected_features]
 ```
+**Fixing test set mismatches and standardizing:**
+```python
+# Display the top selected features
+dataframe=pd.DataFrame(selected_features, columns=["Feature"])
+print(dataframe)
 
-
+# Prepare the test dataset using selected features
+X_test = test_data[selected_features]
+```
 <h2>Program walk-through:</h2>
 
 <p align="center">
