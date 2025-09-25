@@ -1,4 +1,4 @@
-<h1>Predicting Household Poverty Status Using Rapid Survey Data</h1>
+<h1>Household Poverty Status Prediction Using LASSO</h1>
 
 <h2>Description</h2>
 
