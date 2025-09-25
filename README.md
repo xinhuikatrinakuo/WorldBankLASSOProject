@@ -2,7 +2,7 @@
 
 <h2>Description</h2>
 
-Identifying households in poverty is essential for providing effective assistance, but traditional surveys are expensive and time-consuming. The World Bank aims to identify key factors influencing household poverty to improve data collection efficiency. The goal is this project is to predict household poverty status (`poor`: True/False) using machine learning and to select the most relevant features with **LASSO (L1-regularized) Logistic Regression**. LASSO shrinks weak predictors to zero, highlights the most important features, prevents overfitting, and allows the World Bank to reduce the number of survey questions while maintaining accuracy.
+Identifying households in poverty is essential for providing effective assistance, but traditional surveys are expensive and time-consuming. The World Bank aims to identify key factors influencing household poverty to improve data collection efficiency. The goal of this project is to predict household poverty status (`poor`: True/False) using machine learning and to select the most relevant features with **LASSO (L1-regularized) Logistic Regression**. LASSO shrinks weak predictors to zero, highlights the most important features, prevents overfitting, and allows the World Bank to reduce the number of survey questions while maintaining accuracy.
 <br />
 
 
