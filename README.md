@@ -187,7 +187,7 @@ This bar chart visualizes the Top 20 Most Important Features selected by LASSO R
 - Negative coefficients (Left side) → Reduce the likelihood of poverty.
 - If a feature has a large absolute coefficient, it has a strong influence on predictions.
 
-→ We can see that Feature `TiwRslOh` has the largest negative coefficient meaning that it strongly reduces the likelihood of poverty; also, `GIMIxlmv` has a large negative coefficient and reduces the likelihood of poverty. The second and third large positive coefficients are `gwhBRami` and `HmDAlkAH` meaning that they strongly increase the likelihood of poverty. etc.
+→ We can see that Feature `TiwRslOh` has the largest negative coefficient meaning that it strongly reduces the likelihood of poverty; also, `GIMIxlmv` has a large negative coefficient and reduces the likelihood of poverty. The second and third large positive coefficients are `gwhBRami` and `HmDAlkAH` meaning that they strongly increase the likelihood of poverty, etc.
 
 ```python
 # Train a Lasso (L1-regularized) Logistic Regression model
